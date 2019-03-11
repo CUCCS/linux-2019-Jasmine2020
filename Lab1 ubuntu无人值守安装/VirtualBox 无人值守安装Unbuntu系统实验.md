@@ -16,15 +16,15 @@
 
 - 开启虚拟机的两块网卡<br>网卡二host-only网卡设置开机自启动，自动获取IP地址
 
-  - 配置dhcp<br>![1](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/1.png)
+  - 配置dhcp<br>![1](1.png)
 
   - 更改网络配置<br>
 
-    ![3](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/3.png)<br>![4](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/4.png)
+    ![3](3.png)<br>![4](4.png)
 
   - 网络自启动成功
 
-    ![5](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/5.png)
+    ![5](5.png)
 
 - 利用ssh远程连接虚拟机
 
@@ -35,9 +35,9 @@
 
   
 
-  ![6](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/6.png)
+  ![6](Lab1 ubuntu无人值守安装/6.png)
 
-  <br>![7](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/7.png)<br>![8](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/8.png)
+  <br>![7](7.png)<br>![8](8.png)
 
 - 根据实验指导进行实验内容如下
 
@@ -56,7 +56,7 @@
     rsync -av loopdir/ cd
   ```
 
-  ![9](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/9.png)
+  ![9](9.png)
 
   ```
     
@@ -67,7 +67,7 @@
     cd cd/
   ```
 
-  ![10](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/10.png)
+  ![10](10.png)
 
   ```
     
@@ -81,7 +81,7 @@
      append  file=/cdrom/preseed/ubuntu-server-autoinstall.seed debian-installer/locale=en_US console-setup/layoutcode=us keyboard-configuration/layoutcode=us console-setup/ask_detect=false localechooser/translation/warn-light=true localechoosertranslation/warn-severe=true initrd=/install/initrd.gz root=/dev/ram rw quiet
   ```
 
-  ![11](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/11.png)
+  ![11](11.png)
 
   ```
    # 将定制好的种子文件命名为ubuntu-server-autoinstall.seed并上传至preseed     
@@ -91,11 +91,11 @@
    # 修改isolinux/isolinux.cfg，增加内容timeout 10
   ```
 
-  ![12](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/12.png)<br>
+  ![12](12.png)<br>
 
-  ![13](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/13.png)<br>
+  ![13](13.png)<br>
 
-  ![14](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/14.png)
+  ![14](14.png)
 
   ```
    # 重新生成md5sum.txt
@@ -113,11 +113,11 @@
               -o $IMAGE $BUILD
   ```
 
-  ![15](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/15.png)
+  ![15](15.png)
 
-  ![16](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/16.png)
+  ![16](16.png)
 
-  ![17](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/17.png)
+  ![17](17.png)
 
   ```
    # 利用pstf将iso下载到本地实验环境
@@ -126,11 +126,11 @@
    # 开始无人值守自动安装
   ```
 
-  ![18](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/18.png)
+  ![18](18.png)
 
-  ![19](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/19.png)
+  ![19](19.png)
 
-  ![20](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/20.png)
+  ![20](20.png)
 
   
 
@@ -165,46 +165,46 @@
 
   - 选择支持地点，跳过语言询问
 
-  ![c1](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c1.png)
+  ![c1](c1.png)
 
   - 修改链接等待超时时长
 
   - 修改dhcp超时时长
   - 不允许自动配置网络
 
-  ![c3](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c3.png)
+  ![c3](c3.png)
 
   - 配置网卡静态IP地址、网络掩码、网关地址和域名服务器
 
-  ![c4](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c4.png)
+  ![c4](c4.png)
 
   - 设置默认主机名、域名，强制主机名为isc-vm-host
 
-  ![c5](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c5.png)
+  ![c5](c5.png)
 
   - 设置用户名为cuc，密码及确认密码为sec.cuc.edu.cn
 
-  ![c6](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c6.png)
+  ![c6](c6.png)
 
   - 设置时区为亚洲/上海，并关闭ntp时钟设置
 
-  ![c7](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c7.png)
+  ![c7](c7.png)
 
   - 设置最大空闲空间分区自动分区
 
-  ![c8](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c8.png)
+  ![c8](c8.png)
 
   - 对于lvm分区方法，使用尽可能多地逻辑卷组
   - 选择分区目录：/home /var/ tmp分离的分区
 
-  ![c9](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c9.png)
+  ![c9](c9.png)
 
-  ![c2](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c2.png)
+  ![c2](c2.png)
 
   - 不使用网络镜像
 
-  ![c](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c.png)
+  ![c](c.png)
 
   - 选用server安装包，安装openssh服务，不进行软件包自动联网更新
 
-  ![c10](/Users/jasminezihan/Documents/Github/linux-2019-Jasmine2020/Lab1 ubuntu无人值守安装/c10.png)
+  ![c10](c10.png)
