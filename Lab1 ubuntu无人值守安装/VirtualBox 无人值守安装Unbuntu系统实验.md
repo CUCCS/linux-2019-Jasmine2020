@@ -35,7 +35,7 @@
 
   
 
-  ![6](Lab1 ubuntu无人值守安装/6.png)
+  ![6](6.png)
 
   <br>![7](7.png)<br>![8](8.png)
 
@@ -120,7 +120,7 @@
   ![17](17.png)
 
   ```
-   # 利用pstf将iso下载到本地实验环境
+   # 利用psftp将iso下载到本地实验环境
    get /home/host/cd/custom.iso /Users/jasminezihan/Documents
    
    # 开始无人值守自动安装
@@ -205,6 +205,10 @@
 
   ![c](c.png)
 
-  - 选用server安装包，安装openssh服务，不进行软件包自动联网更新
+  - 选用server安装包，安装openssh服务，无人值守自动更新系统软件
 
   ![c10](c10.png)
+
+
+
+[无人值守安装镜像视频链接](https://v.youku.com/v_show/id_XNDA5NTI2MzE3Mg==.html?spm=a2h3j.8428770.3416059.1)
