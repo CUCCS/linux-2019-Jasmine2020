@@ -22,9 +22,9 @@ asciinema rec
 
 [Lesson-4 vimtutor](https://asciinema.org/a/yc2ITz6lEj6uTP1D3N0fyIcPC)
 
-[Lesson-5 vimtutor](https://asciinema.org/a/xUrIyG2Fg3G7Pf3g7z08jkRVt)
+[Lesson-5 vimtutor](https://asciinema.org/a/qAehoyaB2q9r5eKUyIbCCtaqY)
 
-[Lesson-6 vimtutor](https://asciinema.org/a/qAehoyaB2q9r5eKUyIbCCtaqYt)
+[Lesson-6 vimtutor](https://asciinema.org/a/tGfQwGCIkmEhYtgIaUCPVQaUH)
 
 [Lesson-7 vimtutor](https://asciinema.org/a/r8f6UIYk3twv8BlwfQFU5GiSN)
 
