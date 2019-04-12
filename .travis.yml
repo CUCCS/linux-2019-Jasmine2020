@@ -9,9 +9,14 @@ before_install:
     - tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
     - sudo cp shellcheck-"${scversion}"/shellcheck /usr/bin/
     - /usr/bin/shellcheck --version
+    - sudo apt-get install p7zip
 
 script:
   - bash test.sh
+  - cd Lab4_Shell编程
+  - bash data.sh
+  - bash test1.sh /facilities/sspf.html
+  - bash pic.sh -h
 
 after_script:
   - /usr/bin/shellcheck test.sh
