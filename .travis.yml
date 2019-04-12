@@ -15,9 +15,9 @@ before_install:
 
 script:
   - bash test.sh
-#   - cd Lab4_Shell编程
-#   - bash data.sh
-#   - bash test1.sh /facilities/sspf.html
+  - cd Lab4_Shell编程
+  - bash data.sh
+  - bash test1.sh /facilities/sspf.html
 
 after_script:
   - /usr/bin/shellcheck test.sh
