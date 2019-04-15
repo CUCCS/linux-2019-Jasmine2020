@@ -19,6 +19,12 @@ script:
   - cd Lab4_Shell编程
   - bash data.sh
   - bash test1.sh /facilities/sspf.html
+  - cd images
+  - bash pic.sh -h
+  - bash pic.sh -h -v
+  - bash pic.sh -h -n
+  - bash pic.sh -h -s 256
+  - bash pic.sh -h -a blue 56 "Welcome!"
 
 after_script:
   - /usr/bin/shellcheck test.sh
