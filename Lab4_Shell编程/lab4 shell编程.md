@@ -222,19 +222,19 @@
 
   ```bash
   #!/usr/bin/env bash
-  Dir="/home/hadoop/Douments/pic"
-  out=$Dir/out
-  mkdir -p $out
+    
+  dir=`pwd`
+  echo $dir
   
   # 帮助
-  function help {
+  function helps {
     echo "the options:"
-  	echo "-c	input quality to compress JPEG images"
-  	echo "-h	get the help of the operations"
-  	echo "-v	turn all png/svg picture into JPEG"
-  	echo "-s	input size to resize the JPEG/PNG/SVG picture"
-  	echo "-a	add text into the picture"
-  	echo "-n	rename all the png/svg picture"
+          echo "-c        input quality to compress JPEG images"
+          echo "-h        get the help of the operations"
+          echo "-v        turn all png/svg picture into JPEG"
+          echo "-s        input size to resize the JPEG/PNG/SVG picture"
+          echo "-a        add text into the picture"
+          echo "-n        rename all the png/svg picture"
   }
   
   # JPEG图像压缩
@@ -246,10 +246,10 @@
       echo $extension
       if [ $extension == "jpg" ];then
         echo "compressing........";
-        out=$Dir/out/$file
-        convert $file -quality $quality_num $out
+        out=$dir/compress_$file
+        convert -quality $quality_num $file $out
       fi
-    done 
+    done
   }
   
   # 重新调整图片分辨率
@@ -258,14 +258,15 @@
     for file in `ls $dir`
     do
       extension=${file##*.}
-      echo $file
+      #echo $file
       if [ $extension == "jpg" ] || [ $extension == "png" ] || [ $extension == "svg" ];then
-      out=$Dir/out/$file
+      out=$dir/resize_$file
+      echo $file
       echo "resizing";
-      convert -resize $size $file $out
+      convert -resize $size"x"$size $file $out
       fi
     done
-     
+  
   }
   
   # 批量加入文本
@@ -279,9 +280,10 @@
       echo $file
       if [ $extension == "jpg" ] || [ $extension == "png" ] || [ $extension == "svg" ];then
       echo "drawing";
-      convert -fill $color -pointsize $size -draw "$text" $file
+      out=$dir/draw_${file%.*}.${file##*.}
+      convert -fill $color -pointsize $size -draw "text 15,50 '$text'" $file $out
       fi
-    done  
+    done
   }
   
   # 图像转为JPEG格式
@@ -289,52 +291,54 @@
     for file in `ls $dir`
     do
       extension=${file##*.}
-      echo $file
+      #echo $file
       if [ $extension == "png" ] || [ $extension == "svg" ];then
-      out=$Dir/out/${file%.*}.jpeg
+      out=$dir/type_${file%.*}.jpeg
       echo $out
       echo "converting";
       convert $file $out
       fi
-    done 
+    done
   }
   
   # 重命名
   function rename {
     for file in `ls $dir`
     do
+      extension=${file##*.}
+      if [ $extension == "jpg" ] || [ $extension == "png" ] || [ $extension == "svg" ];then
       echo $file
-      out=$Dir/out/in_${file%.*}.${file##*.}
+      out=$dir/in_${file%.*}.${file##*.}
       echo $out
       echo "renaming";
       convert $file $out
+      fi
     done
   }
   
   # 主函数入口
   while [[ "$#" -ne 0 ]]; do
    case $1 in
-  	"-c") 
-  			compress $2
-  			shift 2;;
-  	"-s")
-  			resize $2
-  			shift 2;;
-  	"-h")
-  			Operations
-  			shift;;		
-  	"-a") 
-  			add_text $2 $3 $4
-  			shift 4;;
-  	"-v"）
-  			converting
-  			shift;;			
-  	"-n")
-  			rename
-        shift;;		
-  		esac
+          "-c")
+                          compress $2
+                          shift 2;;
+          "-s")
+                          resize $2
+                          shift 2;;
+          "-h")
+                          helps
+                          shift;;
+          "-a")
+                          add_text $2 $3 $4
+                          shift 4;;
+          "-v")
+                          converting
+                          shift;;
+          "-n")
+                          rename
+        shift;;
+                  esac
   done
-  
   ```
 
   
@@ -344,3 +348,33 @@
 ​	![](parameter.png)
 
 ​	![](parameter_result.png)
+
+- 实验结果
+
+  可以通过命令行参数指定实现功能
+
+  ![](convert.png)
+
+  将所有svg和png为后缀的图片转换为jpeg格式
+
+  ![](resize.png)
+
+  ![](size.png)
+
+  将所有图片更改为指定大小
+
+  ![](rename.png)
+
+  图片重命名
+
+  ![](draw.png)
+
+  ![](pic.png)
+
+  ![](pic2.png)
+
+  图片批量加入文字，可以限定文字颜色，大小和内容
+
+  ![](compress.png)
+
+  jpeg图片压缩功能失败，报错为convert中不含-quality属性
