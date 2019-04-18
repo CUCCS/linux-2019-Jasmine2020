@@ -9,25 +9,10 @@ before_install:
     - tar --xz -xvf shellcheck-"${scversion}".linux.x86_64.tar.xz
     - sudo cp shellcheck-"${scversion}"/shellcheck /usr/bin/
     - /usr/bin/shellcheck --version
-    - sudo apt-get install -y p7zip-full
-    - wget http://sec.cuc.edu.cn/huangwei/course/LinuxSysAdmin/exp/chap0x04/web_log.tsv.7z
-    - 7z x web_log.tsv.7z
+
 
 script:
   - bash test.sh
-  - cd Lab4_Shell编程
-  - bash data.sh
-  - bash test1.sh /facilities/sspf.html
-  - cd images
-  - bash pic.sh -h
-  - bash pic.sh -h -v
-  - ls
-  - bash pic.sh -h -n
-  - ls
-  - bash pic.sh -h -s 256
-  - ls
-  - bash pic.sh -h -a blue 56 "Welcome!"
-  - ls
 
 after_script:
   - /usr/bin/shellcheck test.sh
