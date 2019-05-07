@@ -98,6 +98,8 @@
 sudo apt install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc
   ```
 
+  
+  
   配置nginx
   
   ```bash
@@ -108,85 +110,85 @@ sudo apt install php-curl php-gd php-mbstring php-mcrypt php-xml php-xmlrpc
   # 从/sites-enabled/目录中取消链接默认配置文件
   sudo unlink /etc/nginx/sites-enabled/default
   # 测试新配置文件的语法错误：
-  sudo nginx -t
+sudo nginx -t
   #重新加载Nginx以进行必要的更改：
 sudo systemctl reload nginx
   ```
-
+  
   ![test](test.png)
   
   ![example1com](example1com.png)
   
-创建PHP文件以测试配置
+  创建PHP文件以测试配置
   
-```bash
-  # 使用文本编辑器创建info.php在文档根目录中调用的测试PHP文件：
-sudo vim /var/www/html/info.php
+  ```bash
+    # 使用文本编辑器创建info.php在文档根目录中调用的测试PHP文件：
+  	sudo vim /var/www/html/info.php
   ```
-
+  
   ![phpinfo](phpinfo.png)
   
-  访问该php页面
+   访问该php页面
   
-使用info.php页面获取502 Bad Gateway
+  使用info.php页面获取502 Bad Gateway
   
-发现是php-fpm版本不匹配
-  
-  ```bash
-  # 在/etc/nginx/sites-available/example.com中做出如下更改，由于链接sites-enable中响应文件也会更改
-  fastcgi_pass unix:/var/run/php/php7.0-fpm.sock
-```
-  
-成功访问
-  
-  ![infohtml](infohtml.png)
+  发现是php-fpm版本不匹配
   
   ```bash
-  # 测试完毕，键入以下命令删除文件：
-  sudo rm /var/www/html/info.php
+    # 在/etc/nginx/sites-available/example.com中做出如下更改，由于链接sites-enable中响应文件也会更改
+    fastcgi_pass unix:/var/run/php/php7.0-fpm.sock
   ```
   
-  在Ubuntu中安装并配置WordPress
+  成功访问
+  
+    ![infohtml](infohtml.png)
+  
+  ```bash
+    # 测试完毕，键入以下命令删除文件：
+    sudo rm /var/www/html/info.php
+  ```
+  
+    在Ubuntu中安装并配置WordPress
   
   ```bash
   # 在一个可写目录下安装WordPress
-  cd /tmp
-  curl -O https://wordpress.org/latest.tar.gz
+    cd /tmp
+    curl -O https://wordpress.org/latest.tar.gz
+    
+    # 解压文件以创建WordPress目录结构
+    tar xzvf latest.tar.gz
+    
+  # 将示例配置文件复制到WordPress实际读取的文件中
+    cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
   
-  # 解压文件以创建WordPress目录结构
-  tar xzvf latest.tar.gz
-  
-# 将示例配置文件复制到WordPress实际读取的文件中
-  cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
-
-  # 将目录的全部内容复制到文档根目录中
-# -a标志用来维护权限
-  sudo cp -a /tmp/wordpress/. /var/www/html
-  
-  # 从WordPress密钥生成器中获取安全值
-  curl -s https://api.wordpress.org/secret-key/1.1/salt/
+    # 将目录的全部内容复制到文档根目录中
+  # -a标志用来维护权限
+    sudo cp -a /tmp/wordpress/. /var/www/html
+    
+    # 从WordPress密钥生成器中获取安全值
+    curl -s https://api.wordpress.org/secret-key/1.1/salt/
   ```
   
-  将生成的内容复制到`/var/www/html/wp-config.php`中，并修改数据库的设置
-
-  ![wordpressconfig](wordpressconfig.png)
+    将生成的内容复制到`/var/www/html/wp-config.php`中，并修改数据库的设置
   
-  在浏览器中访问相应地址即可安装Wordpress
+    ![wordpressconfig](wordpressconfig.png)
+  
+    在浏览器中访问相应地址即可安装Wordpress
   
   ```bash
   # 在/etc/hosts中添加
-  10.211.55.5 wp.sec.cuc.edu.cn
-  
-  # 在本机mac的/etc/hosts中添加同样的内容
-  10.211.55.5 wp.sec.cuc.edu.cn
+    10.211.55.5 wp.sec.cuc.edu.cn
+    
+    # 在本机mac的/etc/hosts中添加同样的内容
+    10.211.55.5 wp.sec.cuc.edu.cn
   ```
   
   ![wordpress](wordpress.png)
   
-  即可在mac主机上通过域名访问网页
+    即可在mac主机上通过域名访问网页
   
-  ![宿主nginx](宿主nginx.png)
-
+    ![宿主nginx](宿主nginx.png)
+  
 - 使用DVWA搭建站点
 
   ```bash
@@ -245,6 +247,8 @@ sudo vim /var/www/html/info.php
 
   disable_ip fliter:![dis_ipfliter](dis_ipfliter.png)
 
+  result：
+
 - [Damn Vulnerable Web Application (DVWA)](http://www.dvwa.co.uk/)只允许白名单上的访客来源IP，其他来源的IP访问均向访客展示自定义的**友好错误提示信息页面-2**
 
   dvwa_white matcher:![dvwa_whitematcher](dvwa_whitematcher.png)
@@ -297,8 +301,6 @@ sudo vim /var/www/html/info.php
 
   Frequency response:![frequency](frequency.png)
 
-  Frequency fliter:
-
   result:![limit](limit.png)
 
   - 禁止curl访问
@@ -310,3 +312,14 @@ sudo vim /var/www/html/info.php
   disable_curl fliter:![dis_curlfliter](dis_curlfliter.png)
 
   result:![dis_curl](dis_curl.png)
+
+
+
+#### 参考链接
+
+- [How to install wordpress with LEMP on ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-18-04)
+- [How to install linux nginx mysql php LEMP stack ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-ubuntu-18-04)
+- [How to Install and Configure DVWA Lab on Ubuntu 18.04 server](https://kifarunix.com/how-to-setup-damn-vulnerable-web-app-lab-on-ubuntu-18-04-server/)
+- [linux-2019-luyj](https://github.com/CUCCS/linux-2019-luyj/blob/Linux_exp0x05/Linux_exp0x05/Linux_exp0x05.md)
+- [linux-2019-Cassie8888](https://github.com/CUCCS/linux-2019-Cassie8888/blob/037f4d4d152ca61f2a3afcf85c0027542d8cc535/linux05/%E5%AE%9E%E9%AA%8C%E4%BA%94.md)
+
